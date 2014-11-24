@@ -234,11 +234,12 @@ class Mutator(object):
         cmd = '%s %s' % (self.mutator['cmd'], self.src_fullpath)
 
         proc = subprocess.Popen(
-            shlex.split(cmd),
+            shlex.split(cmd,posix=False),
             stdout=subprocess.PIPE,
             stdin=subprocess.PIPE,
             stderr=subprocess.PIPE,
         )
+
         data, err = proc.communicate()
 
         if proc.returncode != 0 or err:
